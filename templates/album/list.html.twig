@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% import "macros.html.twig" as macro %}
+
+{% block body %}
+
+    {% if app.user %}
+        <h3>Your favorite GIFs</h3>
+        <hr>
+        <div class="d-flex flex-wrap mb-5">
+        {% for gif in app.user.favoriteGifs %}
+            {{ macro.gif(gif) }}
+        {% else %}
+            <h5 class="text-muted">Nothing yet.</h5>
+        {% endfor %}
+        </div>
+    {% endif %}
+
+    <h3>Albums</h3>
+    <hr>
+    {% for album in albums %}
+        <a href="{{ path('app_album_show', {id: album.id}) }}" class="card text-decoration-none text-reset mb-3 shadow-sm">
+            <div class="card-body">
+                <h5 class="">{{ album.title }}
+                    <span class="badge badge-secondary">
+                        {% if album.gifs|length == 0 %}
+                            No GIFs yet
+                        {% elseif album.gifs|length == 1 %}
+                            {{ album.gifs|length }} GIF
+                        {% else %}
+                            {{ album.gifs|length }} GIFs
+                        {% endif %}
+                    </span>
+                </h5>
+            </div>
+        </a>
+    {% endfor %}
+
+    <a href="{{ path('app_album_add') }}" class="btn btn-block btn-light"><i class="fas fa-plus"></i> Add an album</a>
+
+{% endblock body %}

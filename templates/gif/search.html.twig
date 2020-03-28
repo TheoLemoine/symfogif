@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+{% import "macros.html.twig" as macro %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <h1 class="mb-4"><i class="fas fa-search"></i> Search</h1>
+    <hr>
+    <div class="row form-group mb-5">
+        <div class="col-10">
+            {{ form_widget(form.search, { attr: { class: "form-control" }}) }}
+        </div>
+        <div class="col-2">
+            {{ form_widget(form.save, { attr: { class: "btn btn-light btn-block" }, label: "Search" }) }}
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+
+    {% if gifs is not empty and searchTerms is not empty %}
+        <div class="d-flex flex-wrap">
+            {% for gif in gifs %}
+                {{ macro.gif(gif) }}
+            {% endfor %}
+        </div>
+    {% elseif gifs is empty and searchTerms is not empty %}
+        <h5 class="text-muted">No GIFs found.</h5>
+    {% endif %}
+
+{% endblock body %}

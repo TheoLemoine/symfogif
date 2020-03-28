@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <h1 class="mb-4">Change album title</h1>
+    <hr>
+    <p class="form-group">
+        {{ form_errors(form.title) }}
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_widget(form.save, { attr: { class: "btn btn-light" }, label: "Change title" }) }}
+    </p>
+
+    {{ form_end(form) }}
+
+
+{% endblock body %}

@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <h1 class="mb-4">Add a GIF</h1>
+    <hr>
+    <p class="form-group">
+        {{ form_errors(form.album) }}
+        {{ form_label(form.album) }}
+        {{ form_widget(form.album, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_errors(form.url) }}
+        {{ form_label(form.url) }}
+        {{ form_widget(form.url, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_errors(form.tags) }}
+        {{ form_label(form.tags) }}
+        {{ form_widget(form.tags, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_widget(form.save, { attr: { class: "btn btn-light" }, label: "Add the GIF" }) }}
+    </p>
+
+    {{ form_end(form) }}
+
+
+{% endblock body %}

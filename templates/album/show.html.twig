@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+{% import "macros.html.twig" as macro %}
+
+{% block body %}
+
+    <h2>{{ album.title }} <a href="{{ path('app_album_update', {id: album.id}) }}" class="btn btn-sm btn-light">change name</a></h2>
+    <span class="text-secondary"> — by {{ album.author.username }}</span>
+    <hr>
+    <div class="d-flex flex-wrap">
+    {% for gif in album.gifs %}
+        {{ macro.gif(gif) }}
+    {% else %}
+        <h5 class="text-muted">No GIFs yet.</h5>
+    {% endfor %}
+    </div>
+    {% if app.user %}
+        <a href="{{ path('app_gif_add', {id: album.id}) }}" class="btn btn-light mt-2"><i class="fas fa-plus"></i> Add a GIF</a>
+    {% endif %}
+
+{% endblock body %}

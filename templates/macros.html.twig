@@ -1,0 +1,32 @@
+{% macro gif(gif) %}
+    <div class="card mb-3 mr-3 w-25 shadow-sm">
+        <img src="{{ gif.url }}" alt="" class="card-img-top" height="200" width="auto">
+        <div class="card-body">
+            {% if app.user %}
+                <div class="card-img-overlay align-text-bottom">
+                    <div class="btn-group" role="group">
+                        {% if gif in app.user.favoriteGifs %}
+                            <a href="{{ path('app_fav_delete',  {id: gif.id}) }}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-heart-broken"></i>
+                            </a>
+                        {% else  %}
+                            <a href="{{ path('app_fav_add', {id: gif.id}) }}" class="btn btn-sm btn-success">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        {% endif %}
+
+                        {% if app.user == gif.author %}
+                            <a href="{{ path('app_gif_delete', {id: gif.id}) }}" class="btn btn-sm btn-dark">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            <div class="badge badge-info">{{ gif.author.username }}</div>
+            {% for tag in gif.tags %}
+                <div class="badge badge-secondary">{{ tag }}</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endmacro %}

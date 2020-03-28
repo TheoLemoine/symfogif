@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+    <h1 class="mb-4">Create an account</h1>
+    <hr>
+    <p class="form-group">
+        {{ form_errors(form.username) }}
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_errors(form.plainPassword) }}
+        {{ form_label(form.plainPassword) }}
+        {{ form_widget(form.plainPassword, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_widget(form.save, { attr: { class: "btn btn-light" }, label: "Register" }) }}
+    </p>
+
+    {{ form_end(form) }}
+
+
+{% endblock body %}

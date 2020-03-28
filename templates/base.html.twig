@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Symfonews{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" integrity="sha384-rtJEYb85SiYWgfpCr0jn174XgJTn4rptSOQsMroFBPQSGLdOC5IbubP6lJ35qoM9" crossorigin="anonymous">
+    {% block stylesheets %}{% endblock %}
+
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark mb-5 shadow">
+        <a class="navbar-brand" href="{{ path('app_album_list') }}"><i class="fab fa-symfony"></i> SymfoGIF</a>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a href="{{ path('app_gif_search') }}" class="nav-link"><i class="fas fa-search"></i> Search GIFs</a>
+            </li>
+        </ul>
+        <div>
+            {% if app.user %}
+                <span class="navbar-text mr-3">Connected as <span class="text-light">{{ app.user.username }}</span></span>
+                <a href="{{ path('logout') }}" class="btn btn-outline-light"><i class="fas fa-sign-out-alt"></i> Log out</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="btn btn-outline-light"><i class="fas fa-sign-in-alt"></i> Log in</a>
+                <a href="{{ path('app_register') }}" class="btn btn-light"><i class="fas fa-user-plus"></i> Sign up</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block body %}{% endblock %}
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+    </div>
+</body>
+</html>

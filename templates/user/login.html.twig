@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error.message }}</div>
+    {% endif %}
+
+    {{ form_start(form) }}
+
+    <h1 class="mb-4">Connect</h1>
+    <hr>
+    <p class="form-group">
+        {{ form_label(form._username) }}
+        {{ form_widget(form._username, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_label(form._password) }}
+        {{ form_widget(form._password, { attr: { class: "form-control" } }) }}
+    </p>
+    <p class="form-group">
+        {{ form_widget(form.save, { attr: { class: "btn btn-light" }, label: "Connect" }) }}
+    </p>
+
+    {{ form_end(form) }}
+
+
+{% endblock body %}
